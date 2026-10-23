@@ -5,8 +5,9 @@
 **Section:** ILFV3  
 **Project:** Flutter Architecture, Widgets and Basic UI
 
-## 1. GitHub repository link
-Add your repository URL here only if you create and push this project to GitHub. Do not submit a placeholder as a real link.
+## 1. GitHub Repository Link
+
+https://github.com/cyrill2026/flutter_basics_lab
 
 ## 2. Last three `build() called` lines from Activity 2
 Run Activity 2, tap the plus button several times, and copy the last three actual lines from VS Code's Debug Console here. Do not invent these logs; they depend on your actual run.
@@ -55,8 +56,8 @@ ThemeData sets shared styles for the app, such as the app color scheme and Eleva
 `_ThemeDemoAppState` stores the `_isDark` value. The switch calls `_setDark`, which updates the value inside `setState()`. MaterialApp rebuilds and uses `themeMode` to select the light or dark theme.
 
 ## Before submission
-- [ ] Replace the sample Debug Console lines with the actual lines from your run.
-- [ ] Add your GitHub repository link.
-- [ ] Capture and save all seven required screenshots in `screenshots/`.
-- [ ] Confirm the section is ILFV3 and the subject code is ITE120.
-- [ ] Run all five activities and check for errors.
+- [x] Replace the sample Debug Console lines with the actual lines from your run.
+- [x] Add your GitHub repository link.
+- [x] Capture and save all seven required screenshots in `screenshots/`.
+- [x] Confirm the section is ILFV3 and the subject code is ITE120.
+- [x] Run all five activities and check for errors.
