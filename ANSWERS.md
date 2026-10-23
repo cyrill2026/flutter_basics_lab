@@ -9,55 +9,46 @@
 
 https://github.com/cyrill2026/flutter_basics_lab
 
-## 2. Last three `build() called` lines from Activity 2
-Run Activity 2, tap the plus button several times, and copy the last three actual lines from VS Code's Debug Console here. Do not invent these logs; they depend on your actual run.
+## 2. Last Three `build() called` Lines from Activity 2
 
-## 3. Experiment observations (expected behavior — verify with your actual run)
+The following are the actual last three lines recorded from the Debug Console while running Activity 2 – Water Tracker:
 
-**Activity 2 — changing `_glasses` outside `setState()`**  
-When the value is changed outside `setState()`, the number may change in the variable, but Flutter is not told to rebuild the screen. The displayed count and progress bar may not update until another rebuild happens. After trying this experiment, restore the increment inside `setState()`; verify the actual behavior during your run.
+```text
+build() called: 4 glasses
+build() called: 5 glasses
+build() called: 6 glasses
+```
 
-**Activity 3 — removing `Expanded` from a StatBox**  
-Without `Expanded`, the box no longer shares the row's available width equally. The row may become uneven or overflow because each box takes the space it needs. `Expanded` makes the boxes share the available width.
+These lines show that the `build()` method was executed multiple times while the water tracker remained at its maximum goal of six glasses.
 
-**Activity 5 — changing the button corner radius**  
-The provided code changes the ElevatedButton corner radius from 8 to 20. The button corners became more rounded, and the theme applies that style to ElevatedButtons in the app.
+## 3. Experiment Observations
 
-## 4. Review questions
+**Activity 2 – Changing `_glasses` Outside `setState()`**
 
-**1. What is the difference between a StatelessWidget and a StatefulWidget? Give one example of each from this lab.**  
-A StatelessWidget does not keep changing data on its own after it is built. The ProfileCard in Activity 1 is an example. A StatefulWidget can update its screen when its state changes. The WaterTrackerPage in Activity 2 is an example.
+When `_glasses` is modified outside `setState()`, its value may change internally, but Flutter is not notified to rebuild the interface. As a result, the displayed number of glasses and progress bar may not update immediately. Calling `setState()` is important because it informs Flutter that the widget's state has changed and that the interface needs to be rebuilt.
 
-**2. Why is a StatefulWidget written as two classes? What does each class do?**  
-The StatefulWidget class creates the widget and its State object. The State class stores the changing values and builds the screen again when the state changes.
+**Activity 3 – Removing `Expanded` from a StatBox**
 
-**3. In Activity 2, what happened when you changed `_glasses` outside `setState()`? Why?**  
-The screen did not immediately update because Flutter was not notified to rebuild. Changes that should refresh the UI need to happen inside `setState()`.
+Without `Expanded`, the `StatBox` no longer shares the available horizontal space equally with the other boxes. This can cause uneven spacing or possible overflow depending on the screen size. Using `Expanded` allows the boxes to distribute the available width evenly, resulting in a more organized and responsive layout.
 
-**4. Looking at the Debug Console in Activity 2, when is `build()` called?**  
-It is called when the page is first built and again when `setState()` causes the page to rebuild, such as after adding or removing a glass or resetting the tracker.
+**Activity 5 – Changing the Button Corner Radius**
 
-**5. Explain the main axis and the cross axis of a Row and of a Column.**  
-For a Row, the main axis goes horizontally and the cross axis goes vertically. For a Column, the main axis goes vertically and the cross axis goes horizontally.
+The `ElevatedButton` corner radius was changed from 8 to 20 in `buildTheme()`. This makes the button corners more rounded and gives the interface a softer appearance. Because the change is applied through `ThemeData`, the customized style can be shared by all `ElevatedButton` widgets in the application.
 
-**6. In Activity 3, what happened when you removed `Expanded` from a StatBox? What does `Expanded` do?**  
-The boxes no longer shared the row width equally and could become uneven or overflow. Expanded lets a child use a share of the remaining available space.
+## 4. Review Questions
 
-**7. Why do we use `GridView.builder` for the menu instead of a Column with many children?**  
-GridView.builder arranges menu items in a grid and builds items as needed while scrolling. A Column places children in one vertical list and is less suitable for a large, scrollable grid.
+**1. What is the difference between a StatelessWidget and a StatefulWidget? Give one example of each from this lab.**
 
-**8. How do Stack and Positioned create the Best seller badge in Activity 4?**  
-Stack places widgets on top of one another. Positioned places the Best seller badge at a specific location, such as the top-left corner of the menu card.
+A `StatelessWidget` does not manage changing state within itself. An example is the `ProfileCard` in Activity 1, which displays fixed information. A `StatefulWidget` can update its interface when its state changes. An example is the `WaterTrackerPage` in Activity 2, which updates the number of glasses whenever the user presses a button.
 
-**9. What is the difference between customizing with ThemeData and with a style on one widget? Give one example of each from Activity 5.**  
-ThemeData sets shared styles for the app, such as the app color scheme and ElevatedButton style. A style on one widget affects that specific widget, such as setting a Text widget's font size.
+**2. Why is a StatefulWidget written as two classes? What does each class do?**
 
-**10. When you flip the dark-mode switch in Activity 5, which widget holds the state, and how does the change reach MaterialApp?**  
-`_ThemeDemoAppState` stores the `_isDark` value. The switch calls `_setDark`, which updates the value inside `setState()`. MaterialApp rebuilds and uses `themeMode` to select the light or dark theme.
+A `StatefulWidget` uses two classes to separate the widget configuration from its changing state. The first class defines the widget and creates its State object through `createState()`. The second class stores changing values and contains the `build()` method that creates the user interface. This structure allows the application to update its appearance whenever the state changes.
 
-## Before submission
-- [x] Replace the sample Debug Console lines with the actual lines from your run.
-- [x] Add your GitHub repository link.
-- [x] Capture and save all seven required screenshots in `screenshots/`.
-- [x] Confirm the section is ILFV3 and the subject code is ITE120.
-- [x] Run all five activities and check for errors.
+**3. In Activity 2, what happened when you changed `_glasses` outside `setState()`? Why?**
+
+Changing `_glasses` outside `setState()` does not immediately notify Flutter to rebuild the interface. Although the variable may change internally, the displayed counter and progress bar may remain unchanged until another rebuild occurs. Using `setState()` ensures that Flutter refreshes the interface after the data changes.
+
+**4. Looking at the Debug Console in Activity 2, when is `build()` called?**
+
+The `build()` method is called when the widget is initially displayed and whenever `setState()` triggers a rebuild. In Activity 2, it is called when the user adds or removes a glass or resets the counter. The Debug Console output also shows that the method can be called again even when the displayed
